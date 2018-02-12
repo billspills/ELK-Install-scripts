@@ -7,7 +7,7 @@ filebeat.prospectors:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /home/bikeride/filebeat_logs/test_1/*.log
+    - /home/filebeat_logs/test_1/*.log
     #- c:\programdata\elasticsearch\logs\*
 
   #exclude_lines: ['^DBG']
