@@ -22,6 +22,12 @@ filebeat.prospectors:
     level: debug
     review: 1
 
+# depending on your needs you can send to Logstash then elasticsearch or straight to elasticsearch
+# Logstash can be resource intensive but can add parsing logic to the feed
+#-------------------------- Elasticsearch output ------------------------------
+#output.elasticsearch:
+  # Array of hosts to connect to.
+  #hosts: ["localhost:9200"]
 
 #----------------------------- Logstash output --------------------------------
 output.logstash:
