@@ -86,6 +86,8 @@ sed -i "s|$strstrElasticsearchOrigOrig|$strstrElasticsearchNew|g" $path/$filenam
 chown -R elasticsearch:elasticsearch /etc/elasticsearch/
 chown -R logstash:logstash /etc/logstash/
 chown -R kibana:kibana /etc/kibana/
+# know this is bad but there's fixes a problem
+chown -R root:root /etc/filebeat
 
 # enable the services
 systemctl daemon-reload
@@ -121,6 +123,4 @@ echo 'Done'
 echo 'Elasticsearch - localhost:9200'
 echo 'Kibana - localhost:5601'
 echo 'Place a file with a .log extension in the /home/filebeat_logs/test_1 folder and it should be parsed'
-echo ' if everything worked right the Tomcat access log should be in the logstash* index'
-
-
+echo 'if everything worked right the Tomcat access log should be in the logstash* index'
