@@ -9,10 +9,10 @@
 # download/install/configure ELK + filebeat
 
 # get the packages
-wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.1.rpm
-wget https://artifacts.elastic.co/downloads/logstash/logstash-6.2.1.rpm
-wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.1-x86_64.rpm
-wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.1-x86_64.rpm
+wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.rpm
+wget https://artifacts.elastic.co/downloads/logstash/logstash-6.2.4.rpm
+wget https://artifacts.elastic.co/downloads/kibana/kibana-6.2.4-x86_64.rpm
+wget https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.4-x86_64.rpm
 
 # download some basic configuration files
 wget https://raw.githubusercontent.com/macatak/ELK-Install-scripts/master/LS_beats.conf
@@ -20,10 +20,10 @@ wget https://raw.githubusercontent.com/macatak/ELK-Install-scripts/master/basicF
 wget https://raw.githubusercontent.com/macatak/ELK-Install-scripts/master/bodgeit_access.log
 
 # install the packages
-rpm -ivh elasticsearch-6.2.1.rpm
-rpm -ivh logstash-6.2.1.rpm
-rpm -ivh kibana-6.2.1-x86_64.rpm
-rpm -ivh filebeat-6.2.1-x86_64.rpm
+rpm -ivh elasticsearch-6.2.4.rpm
+rpm -ivh logstash-6.2.4.rpm
+rpm -ivh kibana-6.2.4-x86_64.rpm
+rpm -ivh filebeat-6.2.4-x86_64.rpm
 
 # backup the YML's
 cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch.yml.orig
@@ -103,10 +103,10 @@ systemctl start kibana.service
 systemctl start filebeat.service
 systemctl start logstash.service
 
-# delay for 30 seconds to let the services come up
-echo -e '30 second delay for services to start'
-sleep 30
-echo -e '30 second delay over'
+# delay for 60 seconds to let the services come up
+echo -e '60 second delay for services to start'
+sleep 60
+echo -e '60 second delay over'
 
 # load the Filebeat templates into Elastisearch
 filebeat setup --template -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
