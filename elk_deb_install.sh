@@ -7,7 +7,38 @@
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # download/install/configure ELK + filebeat
+set -e 
+set -u
 
+# This script will install the ELK stack, Java 8 and Nginx
+
+# Adding Java 8 to apt
+sudo add-apt-repository -y ppa:webupd8team/java
+sudo apt-add-repository -y ppa:webupd8team/java
+
+# Importing Elasticsearch public GPG key into APT
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
+
+# Adding Elastic source list to the sources.list.d dir
+echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-6.x.list
+
+# Update apt
+sudo apt update
+
+# Silent install for Java 8
+echo debconf shared/accepted-oracle-license-v1-1 select true | \
+  sudo debconf-set-selections
+echo debconf shared/accepted-oracle-license-v1-1 seen true | \
+  sudo debconf-set-selections
+
+# Install Java 8
+sudo apt install oracle-java8-installer -y
+
+# Installing Nginx
+sudo apt install nginx -y
+
+# UFW allow Nginx HTTP
+sudo ufw allow 'Nginx HTTP'
 # get the packages
 wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.2.deb
 wget https://artifacts.elastic.co/downloads/logstash/logstash-6.2.2.deb
